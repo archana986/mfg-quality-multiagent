@@ -1,0 +1,142 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" font-family="'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1B3139"/>
+    </marker>
+    <marker id="arrowGrey" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8B97A5"/>
+    </marker>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#1B3139" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <rect width="1920" height="1080" fill="#FFFFFF"/>
+  <rect x="0" y="0" width="1920" height="10" fill="#FF3621"/>
+
+  <text x="80" y="92" font-size="44" font-weight="700" fill="#1B3139">Manufacturing quality multi-agent assistant</text>
+  <text x="80" y="140" font-size="24" fill="#5A6F77">One question in. A supervisor model picks the tools it needs. One answer out, with sources. All data is synthetic.</text>
+
+  <!-- Column 1: Setup job -->
+  <rect x="60" y="190" width="480" height="780" rx="18" fill="#F9F7F4" stroke="#E4E1DA" stroke-width="2"/>
+  <circle cx="110" cy="240" r="24" fill="#1B3139"/>
+  <text x="110" y="249" font-size="24" font-weight="700" fill="#FFFFFF" text-anchor="middle">1</text>
+  <text x="148" y="250" font-size="26" font-weight="700" fill="#1B3139" letter-spacing="1">SETUP JOB</text>
+
+  <g filter="url(#shadow)">
+    <rect x="90" y="280" width="420" height="170" rx="12" fill="#FFFFFF" stroke="#8B97A5" stroke-width="2"/>
+  </g>
+  <text x="300" y="322" font-size="25" font-weight="700" fill="#1B3139" text-anchor="middle">Synthetic quality data</text>
+  <text x="300" y="360" font-size="18" fill="#5A6F77" text-anchor="middle">inspections · defect history</text>
+  <text x="300" y="390" font-size="18" fill="#5A6F77" text-anchor="middle">plant metrics · corrective actions</text>
+  <text x="300" y="420" font-size="18" fill="#5A6F77" text-anchor="middle">service bulletins</text>
+
+  <line x1="300" y1="450" x2="300" y2="496" stroke="#1B3139" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <g filter="url(#shadow)">
+    <rect x="90" y="500" width="420" height="130" rx="12" fill="#2272B4"/>
+  </g>
+  <text x="300" y="542" font-size="25" font-weight="700" fill="#FFFFFF" text-anchor="middle">Vector Search index</text>
+  <text x="300" y="578" font-size="18" fill="#FFFFFF" text-anchor="middle">Delta Sync on bulletin text</text>
+  <text x="300" y="606" font-size="18" fill="#D6E6F5" text-anchor="middle">embeddings: databricks-gte-large-en</text>
+
+  <line x1="300" y1="630" x2="300" y2="676" stroke="#1B3139" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <g filter="url(#shadow)">
+    <rect x="90" y="680" width="420" height="110" rx="12" fill="#EEEDE9" stroke="#1B3139" stroke-width="2"/>
+  </g>
+  <text x="300" y="722" font-size="25" font-weight="700" fill="#1B3139" text-anchor="middle">Unity Catalog</text>
+  <text x="300" y="758" font-size="18" fill="#5A6F77" text-anchor="middle">tables and index in &lt;catalog&gt;.&lt;schema&gt;</text>
+
+  <text x="300" y="862" font-size="18" fill="#5A6F77" text-anchor="middle">Serverless notebooks 01 to 04</text>
+  <text x="300" y="890" font-size="18" fill="#5A6F77" text-anchor="middle">test the same tools the app runs</text>
+
+  <!-- Column 2: Databricks App -->
+  <rect x="580" y="190" width="760" height="780" rx="18" fill="#FFF6F4" stroke="#F6D3CC" stroke-width="2"/>
+  <circle cx="630" cy="240" r="24" fill="#FF3621"/>
+  <text x="630" y="249" font-size="24" font-weight="700" fill="#FFFFFF" text-anchor="middle">2</text>
+  <text x="668" y="250" font-size="26" font-weight="700" fill="#1B3139" letter-spacing="1">DATABRICKS APP</text>
+
+  <g filter="url(#shadow)">
+    <rect x="760" y="280" width="400" height="90" rx="12" fill="#FFFFFF" stroke="#8B97A5" stroke-width="2"/>
+  </g>
+  <text x="960" y="318" font-size="24" font-weight="700" fill="#1B3139" text-anchor="middle">Technician question</text>
+  <text x="960" y="350" font-size="18" fill="#5A6F77" text-anchor="middle">plain language, Streamlit UI</text>
+
+  <line x1="960" y1="370" x2="960" y2="416" stroke="#1B3139" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <g filter="url(#shadow)">
+    <rect x="710" y="420" width="500" height="130" rx="12" fill="#FF3621"/>
+  </g>
+  <text x="960" y="458" font-size="17" font-weight="700" fill="#FFE3DF" text-anchor="middle" letter-spacing="2">SUPERVISOR</text>
+  <text x="960" y="494" font-size="26" font-weight="700" fill="#FFFFFF" text-anchor="middle">Claude Sonnet 4.5</text>
+  <text x="960" y="528" font-size="19" fill="#FFFFFF" text-anchor="middle">Foundation Model APIs · tool calling, up to 5 steps</text>
+
+  <path d="M860,550 C860,585 720,585 720,616" fill="none" stroke="#1B3139" stroke-width="3" marker-end="url(#arrow)"/>
+  <line x1="960" y1="550" x2="960" y2="616" stroke="#1B3139" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M1060,550 C1060,585 1200,585 1200,616" fill="none" stroke="#1B3139" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <g filter="url(#shadow)">
+    <rect x="610" y="620" width="220" height="140" rx="12" fill="#FFFFFF" stroke="#2272B4" stroke-width="2.5"/>
+    <rect x="850" y="620" width="220" height="140" rx="12" fill="#FFFFFF" stroke="#2272B4" stroke-width="2.5"/>
+    <rect x="1090" y="620" width="220" height="140" rx="12" fill="#FFFFFF" stroke="#2272B4" stroke-width="2.5"/>
+  </g>
+  <text x="720" y="662" font-size="23" font-weight="700" fill="#1B3139" text-anchor="middle">Retrieve</text>
+  <text x="720" y="696" font-size="17" fill="#5A6F77" text-anchor="middle">top 3 service bulletins</text>
+  <text x="720" y="722" font-size="17" fill="#5A6F77" text-anchor="middle">from Vector Search</text>
+
+  <text x="960" y="662" font-size="23" font-weight="700" fill="#1B3139" text-anchor="middle">Classify</text>
+  <text x="960" y="696" font-size="17" fill="#5A6F77" text-anchor="middle">severity, root cause</text>
+  <text x="960" y="722" font-size="17" fill="#5A6F77" text-anchor="middle">and corrective action</text>
+
+  <text x="1200" y="662" font-size="23" font-weight="700" fill="#1B3139" text-anchor="middle">Query</text>
+  <text x="1200" y="696" font-size="17" fill="#5A6F77" text-anchor="middle">read-only text-to-SQL</text>
+  <text x="1200" y="722" font-size="17" fill="#5A6F77" text-anchor="middle">on quality tables</text>
+
+  <path d="M720,760 C720,795 860,795 860,826" fill="none" stroke="#1B3139" stroke-width="3" marker-end="url(#arrow)"/>
+  <line x1="960" y1="760" x2="960" y2="826" stroke="#1B3139" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M1200,760 C1200,795 1060,795 1060,826" fill="none" stroke="#1B3139" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <g filter="url(#shadow)">
+    <rect x="710" y="830" width="500" height="110" rx="12" fill="#1B3139"/>
+  </g>
+  <text x="960" y="874" font-size="25" font-weight="700" fill="#FFFFFF" text-anchor="middle">One answer with sources</text>
+  <text x="960" y="910" font-size="19" fill="#C9D3D8" text-anchor="middle">severity · root cause · steps · bulletin IDs</text>
+
+  <!-- Retrieve reads the index -->
+  <path d="M610,690 C565,690 565,565 514,565" fill="none" stroke="#2272B4" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <!-- Column 3: Govern and evaluate -->
+  <rect x="1380" y="190" width="480" height="780" rx="18" fill="#F1FAF6" stroke="#BFE6D6" stroke-width="2"/>
+  <circle cx="1430" cy="240" r="24" fill="#00A972"/>
+  <text x="1430" y="249" font-size="24" font-weight="700" fill="#FFFFFF" text-anchor="middle">3</text>
+  <text x="1468" y="250" font-size="26" font-weight="700" fill="#1B3139" letter-spacing="1">GOVERN AND EVALUATE</text>
+
+  <g filter="url(#shadow)">
+    <rect x="1410" y="300" width="420" height="120" rx="12" fill="#FFFFFF" stroke="#1B3139" stroke-width="2"/>
+  </g>
+  <text x="1620" y="342" font-size="25" font-weight="700" fill="#1B3139" text-anchor="middle">SQL warehouse</text>
+  <text x="1620" y="378" font-size="18" fill="#5A6F77" text-anchor="middle">app resource · reads Unity Catalog tables</text>
+
+  <g filter="url(#shadow)">
+    <rect x="1410" y="620" width="420" height="140" rx="12" fill="#00A972"/>
+  </g>
+  <text x="1620" y="664" font-size="25" font-weight="700" fill="#FFFFFF" text-anchor="middle">SQL guard</text>
+  <text x="1620" y="700" font-size="18" fill="#FFFFFF" text-anchor="middle">one SELECT or WITH statement</text>
+  <text x="1620" y="728" font-size="18" fill="#FFFFFF" text-anchor="middle">only tables in &lt;catalog&gt;.&lt;schema&gt;</text>
+
+  <line x1="1310" y1="690" x2="1406" y2="690" stroke="#1B3139" stroke-width="3" marker-end="url(#arrow)"/>
+  <line x1="1620" y1="620" x2="1620" y2="424" stroke="#1B3139" stroke-width="3" marker-end="url(#arrow)"/>
+  <text x="1636" y="530" font-size="17" fill="#5A6F77">approved SQL only</text>
+
+  <rect x="1410" y="830" width="420" height="110" rx="12" fill="#FFFFFF" stroke="#8B97A5" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="1620" y="870" font-size="22" font-weight="700" font-style="italic" fill="#5A6F77" text-anchor="middle">Optional eval job</text>
+  <text x="1620" y="902" font-size="17" font-style="italic" fill="#5A6F77" text-anchor="middle">classifier scorecard · 12-question eval</text>
+  <text x="1620" y="926" font-size="17" font-style="italic" fill="#5A6F77" text-anchor="middle">logged to MLflow</text>
+
+  <line x1="1210" y1="885" x2="1406" y2="885" stroke="#8B97A5" stroke-width="2.5" stroke-dasharray="6 5" marker-end="url(#arrowGrey)"/>
+  <text x="1300" y="874" font-size="16" fill="#5A6F77" text-anchor="middle">same tools</text>
+
+  <!-- Footer -->
+  <text x="80" y="1030" font-size="20" fill="#5A6F77"><tspan font-weight="700" fill="#FF3621">Scope:</tspan> synthetic data, not a live plant system. Grant the app service principal read access on the schema and index.</text>
+</svg>

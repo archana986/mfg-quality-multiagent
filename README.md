@@ -16,9 +16,9 @@ The same tool code (`src/agent_runtime.py`) runs in the notebooks and in the Dat
 
 ## Architecture
 
-![Setup job builds synthetic tables and a Vector Search index in Unity Catalog; the app's supervisor LLM routes each question to classify, retrieve, and SQL tools and composes one answer](docs/diagrams/mfg_quality_multiagent.png)
+![Setup job builds synthetic tables and a Vector Search index in Unity Catalog. In the Databricks App, a supervisor model routes each question to retrieve, classify, and query tools and returns one answer with sources. Text-to-SQL passes a SQL guard before the SQL warehouse. An optional eval job reuses the same tools.](docs/diagrams/mfg_quality_multiagent.png)
 
-Editable source: [`docs/diagrams/mfg_quality_multiagent.mmd`](docs/diagrams/mfg_quality_multiagent.mmd).
+Editable source: [`docs/diagrams/mfg_quality_multiagent.svg`](docs/diagrams/mfg_quality_multiagent.svg).
 
 | Stage | What it is | What it does |
 |---|---|---|
@@ -137,7 +137,7 @@ The synthetic generator is only for the out-of-the-box demo. To use your own tab
 | `src/app.py`, `src/app.yaml`, `src/requirements.txt` | Streamlit app, start command, dependencies. |
 | `tests/` | Local tests for the SQL guard, bootstrap, agent runtime, and notebook structure. |
 | `scripts/convert_notebooks.py` | Maintainer tool used to convert source notebooks to `.ipynb`. |
-| `docs/diagrams/` | Architecture PNG (this README) and Mermaid source. |
+| `docs/diagrams/` | Architecture PNG (this README) and its editable SVG source. |
 | `multi_genie_*.mmd` / `.png` | Background concept diagrams of supervisor patterns (managed Supervisor Agent vs code-first). Not part of the deploy. |
 | `SETUP.md` | Prerequisites, customization, known limitations. |
 
