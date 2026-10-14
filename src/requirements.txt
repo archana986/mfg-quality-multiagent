@@ -1,0 +1,5 @@
+streamlit>=1.40.0,<2
+databricks-sdk>=0.50.0
+databricks-sql-connector>=3.6.0
+databricks-langchain>=0.6.0
+langchain-core>=0.3.0

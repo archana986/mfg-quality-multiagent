@@ -1,0 +1,54 @@
+---
+config:
+  theme: base
+  themeVariables:
+    fontFamily: "DM Sans, Helvetica, Arial, sans-serif"
+    fontSize: "14px"
+    lineColor: "#393737"
+  flowchart:
+    nodeSpacing: 40
+    rankSpacing: 70
+    curve: basis
+---
+flowchart LR
+  subgraph SETUP["Setup job (serverless, notebooks 01 to 04)"]
+    direction TB
+    G["<b>1 · Synthetic data</b><br/><span style='font-size:11px'>quality_inspections · defect_history<br/>plant_metrics · corrective_actions<br/>service_bulletins (no real plant data)</span>"]:::src
+    V["<b>2 · Vector Search index</b><br/><span style='font-size:11px'>Delta Sync on service_bulletins.bulletin_text<br/>embeddings: databricks-gte-large-en</span>"]:::accent
+    G -->|"CDF enabled"| V
+  end
+
+  UC["<b>Unity Catalog</b><br/><span style='font-size:11px'>&lt;catalog&gt;.&lt;schema&gt;<br/>tables + index, governed</span>"]:::gov
+
+  U["<b>Technician question</b><br/><span style='font-size:11px'>Streamlit Databricks App</span>"]:::flag
+  S{"<b>3 · Supervisor LLM</b><br/><span style='font-size:11px'>databricks-claude-sonnet-4-5<br/>tool calling, max 5 steps</span>"}:::feature
+
+  C["<b>classify_defect</b><br/><span style='font-size:11px'>severity + root cause<br/>+ corrective action (JSON)</span>"]:::model
+  R["<b>search_service_bulletins</b><br/><span style='font-size:11px'>top-3 bulletins<br/>from Vector Search</span>"]:::model
+  Q["<b>query_quality_data</b><br/><span style='font-size:11px'>text-to-SQL, sql_guard:<br/>single SELECT/WITH, FQN only</span>"]:::model
+
+  W["<b>SQL warehouse</b><br/><span style='font-size:11px'>app resource, CAN_USE</span>"]:::src
+  A["<b>Answer</b><br/><span style='font-size:11px'>severity · root cause · steps<br/>data context · bulletin IDs</span>"]:::flag
+  E["<b>5 · Optional eval job</b><br/><span style='font-size:11px'>classifier scorecard · 12-question eval<br/>MLflow log · optional billing</span>"]:::note
+
+  U --> S
+  S -->|"new defect report"| C
+  S -->|"known fixes"| R
+  S -->|"trends, KPIs, cost"| Q
+  R --> V
+  Q --> W
+  W --> UC
+  G -.- UC
+  V -.- UC
+  C --> A
+  R --> A
+  Q --> A
+  S -.->|"same tools, notebook 04"| E
+
+  classDef src fill:#FFFFFF,stroke:#8b97a5,color:#1b3037
+  classDef feature fill:#42ba91,stroke:#2f8f6e,color:#FFFFFF
+  classDef flag fill:#1b3037,stroke:#1b3037,color:#FFFFFF
+  classDef accent fill:#2272b4,stroke:#1a5a90,color:#FFFFFF
+  classDef gov fill:#eef1f3,stroke:#1b3037,color:#1b3037
+  classDef note fill:#fdf6e3,stroke:#b8860b,color:#1b3037
+  classDef model fill:#eef1f3,stroke:#2272b4,color:#1b3037

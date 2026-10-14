@@ -1,0 +1,30 @@
+%%{init: {"theme":"default", "themeVariables": {"edgeLabelBackground":"#FFFFFF", "lineColor":"#2272B4", "fontSize":"15px"}, "flowchart": {"htmlLabels": true, "curve":"basis"}}}%%
+flowchart TB
+    U["User question<br/>(natural language)"] --> FORK{"Custom routing<br/>logic needed?"}
+
+    FORK -->|"No - managed path"| SUPMGD["Supervisor Agent<br/>(Agent Bricks, GA)"]
+    FORK -->|"Yes - code-first path"| SUPCODE["MLflow ResponsesAgent<br/>on Databricks Apps<br/>(LangGraph or OpenAI Agents SDK)"]
+
+    SUPMGD --> GA2["Genie Agents<br/>(formerly Genie spaces)"]
+    SUPMGD --> KA2["Knowledge Assistant / RAG<br/>(unstructured docs)"]
+    SUPCODE --> GA2
+    SUPCODE --> KA2
+
+    GA2 --> OUT2["Reporting /<br/>visualization"]
+    KA2 --> OUT2
+    OUT2 --> ANS2["Final answer"]
+
+    MLF["MLflow 3 GenAI Evaluation<br/>correct_routing · efficient_routing<br/>Safety · RelevanceToQuery<br/>(AI Judge + synthetic tasks)"]
+    SUPMGD -.->|auto-traced| MLF
+    SUPCODE -.->|traced| MLF
+
+    style U fill:#1B3139,color:#FFFFFF,stroke:#2272B4
+    style FORK fill:#2272B4,color:#FFFFFF,stroke:#1B3139
+    style SUPMGD fill:#00A972,color:#FFFFFF,stroke:#1B3139
+    style SUPCODE fill:#1B3139,color:#FFFFFF,stroke:#2272B4
+    style GA2 fill:#00A972,color:#FFFFFF,stroke:#1B3139
+    style KA2 fill:#00A972,color:#FFFFFF,stroke:#1B3139
+    style OUT2 fill:#2272B4,color:#FFFFFF,stroke:#1B3139
+    style ANS2 fill:#1B3139,color:#FFFFFF,stroke:#00A972
+    style MLF fill:#F9F7F4,color:#1B3139,stroke:#2272B4,stroke-dasharray: 5 5
+    linkStyle default stroke:#2272B4,stroke-width:2px

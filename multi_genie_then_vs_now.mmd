@@ -1,0 +1,54 @@
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "primaryColor": "#1B3139",
+    "primaryTextColor": "#FFFFFF",
+    "primaryBorderColor": "#00A972",
+    "lineColor": "#2272B4",
+    "secondaryColor": "#00A972",
+    "tertiaryColor": "#E8F5F0",
+    "background": "#FFFFFF",
+    "mainBkg": "#1B3139",
+    "nodeBorder": "#00A972",
+    "clusterBkg": "#F0F7FF",
+    "clusterBorder": "#2272B4",
+    "titleColor": "#1B3139",
+    "edgeLabelBackground": "#FFFFFF",
+    "fontFamily": "DM Sans, Arial, sans-serif",
+    "fontSize": "14px"
+  }
+}}%%
+flowchart TB
+    subgraph THEN["WHAT MAX SHOWED AT DAIS (the talk)"]
+        direction TB
+        U1["User question"] --> SUP1["Custom LangGraph<br/>Supervisor / Orchestrator<br/>(hand-coded routing)"]
+        SUP1 -->|route| GS1["Genie spaces<br/>(one per domain)"]
+        SUP1 -->|route| RAG1["RAG document<br/>retrieval agent"]
+        GS1 --> VIZ1["Auto-visualization /<br/>reporting agent"]
+        RAG1 --> VIZ1
+        VIZ1 --> ANS1["Answer"]
+        NOTE1["Eval: mostly manual /<br/>custom harness"]
+    end
+
+    subgraph NOW["WHAT WE RECOMMEND TODAY (mid-2026 best practice)"]
+        direction TB
+        U2["User question"] --> FORK{"Custom routing<br/>logic needed?"}
+
+        FORK -->|"No — managed  "| SUPMGD["Supervisor Agent<br/>(Agent Bricks, GA)"]
+        FORK -->|"Yes — code-first  "| SUPCODE["MLflow ResponsesAgent<br/>on Databricks Apps<br/>(LangGraph or OpenAI Agents SDK)"]
+
+        SUPMGD --> GA2["Genie Agents<br/>(formerly Genie spaces)"]
+        SUPMGD --> KA2["Knowledge Assistant<br/>/ RAG"]
+        SUPCODE --> GA2
+        SUPCODE --> KA2
+
+        GA2 --> OUT2["Reporting /<br/>visualization"]
+        KA2 --> OUT2
+        OUT2 --> ANS2["Answer"]
+
+        MLF["MLflow 3 GenAI Evaluation<br/>correct_routing · efficient_routing<br/>Safety · RelevanceToQuery<br/>(AI Judge + synthetic tasks)"]
+        SUPMGD -.->|auto-traced| MLF
+        SUPCODE -.->|traced| MLF
+    end
+
+    THEN -.->|"same idea, now productized + measurable"| NOW

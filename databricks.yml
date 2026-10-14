@@ -1,0 +1,36 @@
+bundle:
+  name: mfg_quality_agent
+
+include:
+  - resources/*.yml
+
+variables:
+  catalog:
+    description: Unity Catalog catalog you can create a schema in
+    default: main
+  schema:
+    description: Schema that will hold synthetic tables and the vector index
+    default: mfg_quality_agent
+  warehouse_id:
+    description: SQL warehouse ID for the Databricks App (Workspace > SQL > Warehouses)
+
+  llm_endpoint:
+    description: Foundation model serving endpoint
+    default: databricks-claude-sonnet-4-5
+  embedding_endpoint:
+    description: Embedding model serving endpoint used by Vector Search
+    default: databricks-gte-large-en
+  vs_endpoint:
+    description: Vector Search endpoint name (created by the setup job if missing)
+    default: mfg_quality_vs_endpoint
+
+targets:
+  dev:
+    mode: development
+    default: true
+  prod:
+    mode: production
+    workspace:
+      root_path: /Workspace/Users/${workspace.current_user.userName}/.bundle/${bundle.name}/${bundle.target}
+    run_as:
+      user_name: ${workspace.current_user.userName}

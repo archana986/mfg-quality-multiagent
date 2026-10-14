@@ -1,0 +1,26 @@
+resources:
+  jobs:
+    eval:
+      name: "[${bundle.target}] MFG Quality Agent - Eval (optional)"
+      max_concurrent_runs: 1
+      parameters:
+        - name: catalog
+          default: ${var.catalog}
+        - name: schema
+          default: ${var.schema}
+        - name: llm_endpoint
+          default: ${var.llm_endpoint}
+        - name: vs_endpoint
+          default: ${var.vs_endpoint}
+        - name: eval_sample_size
+          default: "50"
+      tasks:
+        - task_key: run_eval
+          notebook_task:
+            notebook_path: ../src/notebooks/05_Eval_And_Cost.ipynb
+            base_parameters:
+              catalog: ${var.catalog}
+              schema: ${var.schema}
+              llm_endpoint: ${var.llm_endpoint}
+              vs_endpoint: ${var.vs_endpoint}
+              eval_sample_size: "50"

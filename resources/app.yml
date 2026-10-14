@@ -1,0 +1,46 @@
+resources:
+  apps:
+    quality_assistant:
+      name: mfg-quality-assistant
+      description: Manufacturing Quality Assistant. AI-powered defect analysis.
+      source_code_path: ../src
+      lifecycle:
+        started: true
+      config:
+        command:
+          - streamlit
+          - run
+          - app.py
+          - --server.port
+          - "8000"
+          - --server.address
+          - "0.0.0.0"
+        env:
+          - name: STREAMLIT_SERVER_ENABLE_CORS
+            value: "false"
+          - name: STREAMLIT_SERVER_ENABLE_XSRF_PROTECTION
+            value: "false"
+          - name: MFG_CATALOG
+            value: ${var.catalog}
+          - name: MFG_SCHEMA
+            value: ${var.schema}
+          - name: MFG_LLM_ENDPOINT
+            value: ${var.llm_endpoint}
+          - name: MFG_VS_ENDPOINT
+            value: ${var.vs_endpoint}
+          - name: MFG_VS_INDEX
+            value: ${var.catalog}.${var.schema}.service_bulletins_index
+          - name: DATABRICKS_WAREHOUSE_ID
+            value_from: sql-warehouse
+      resources:
+        - name: sql-warehouse
+          sql_warehouse:
+            id: ${var.warehouse_id}
+            permission: CAN_USE
+        - name: serving-endpoint
+          serving_endpoint:
+            name: ${var.llm_endpoint}
+            permission: CAN_QUERY
+      permissions:
+        - level: CAN_USE
+          group_name: users

@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# internal review doc (not part of deliverable)
+REPO_READ.html
+.databricks/
+
+# deploy output (may contain workspace URLs)
+deploy.log

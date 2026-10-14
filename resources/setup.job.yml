@@ -1,0 +1,53 @@
+resources:
+  jobs:
+    setup:
+      name: "[${bundle.target}] MFG Quality Agent - Setup"
+      max_concurrent_runs: 1
+      parameters:
+        - name: catalog
+          default: ${var.catalog}
+        - name: schema
+          default: ${var.schema}
+        - name: llm_endpoint
+          default: ${var.llm_endpoint}
+        - name: embedding_endpoint
+          default: ${var.embedding_endpoint}
+        - name: vs_endpoint
+          default: ${var.vs_endpoint}
+      tasks:
+        - task_key: generate_data
+          notebook_task:
+            notebook_path: ../src/notebooks/01_Generate_Synthetic_Data.ipynb
+            base_parameters:
+              catalog: ${var.catalog}
+              schema: ${var.schema}
+        - task_key: vector_search
+          depends_on:
+            - task_key: generate_data
+          notebook_task:
+            notebook_path: ../src/notebooks/02_Vector_Search_Index.ipynb
+            base_parameters:
+              catalog: ${var.catalog}
+              schema: ${var.schema}
+              embedding_endpoint: ${var.embedding_endpoint}
+              vs_endpoint: ${var.vs_endpoint}
+        - task_key: sub_agents
+          depends_on:
+            - task_key: vector_search
+          notebook_task:
+            notebook_path: ../src/notebooks/03_Sub_Agents.ipynb
+            base_parameters:
+              catalog: ${var.catalog}
+              schema: ${var.schema}
+              llm_endpoint: ${var.llm_endpoint}
+              vs_endpoint: ${var.vs_endpoint}
+        - task_key: supervisor
+          depends_on:
+            - task_key: sub_agents
+          notebook_task:
+            notebook_path: ../src/notebooks/04_Supervisor_Agent.ipynb
+            base_parameters:
+              catalog: ${var.catalog}
+              schema: ${var.schema}
+              llm_endpoint: ${var.llm_endpoint}
+              vs_endpoint: ${var.vs_endpoint}
