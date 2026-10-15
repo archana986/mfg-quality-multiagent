@@ -51,7 +51,7 @@ If the app resource cannot bind the vector index on the first deploy, run `setup
 - Change synthetic generators in `src/notebooks/01_Generate_Synthetic_Data.ipynb`
 - Change routing or prompts in `src/agent_runtime.py` (shared by notebooks and the app)
 - Change the Streamlit UI in `src/app.py`
-- Add job tasks in `resources/jobs.yml`
+- Add job tasks in `resources/setup.job.yml` or `resources/eval.job.yml`
 
 ## Known limitations
 

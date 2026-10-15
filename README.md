@@ -136,9 +136,7 @@ The synthetic generator is only for the out-of-the-box demo. To use your own tab
 | `src/notebook_bootstrap.py` | Widget and path helpers for notebooks. |
 | `src/app.py`, `src/app.yaml`, `src/requirements.txt` | Streamlit app, start command, dependencies. |
 | `tests/` | Local tests for the SQL guard, bootstrap, agent runtime, and notebook structure. |
-| `scripts/convert_notebooks.py` | Maintainer tool used to convert source notebooks to `.ipynb`. |
 | `docs/diagrams/` | Architecture PNG (this README) and its editable SVG source. |
-| `multi_genie_*.mmd` / `.png` | Background concept diagrams of supervisor patterns (managed Supervisor Agent vs code-first). Not part of the deploy. |
 | `SETUP.md` | Prerequisites, customization, known limitations. |
 
 ## Validation status
